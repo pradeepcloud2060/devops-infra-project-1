@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-        tage('Terraform Init') {
+        stage('Terraform Init') {
             steps {
                 script {
                     if (params.INIT_TERRAFORM) {
