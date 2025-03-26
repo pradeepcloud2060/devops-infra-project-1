@@ -39,8 +39,10 @@ pipeline {
                     if (params.PLAN_TERRAFORM) {
                        //withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credetial-eu-central-1', region: 'eu-central-1']]){
                         withAWS(credentials: 'aws-credetial-eu-central-1', region: 'eu-central-1') {
+
                             dir('infra') {
                                 sh 'echo "=================Terraform Plan=================="'
+                                unset AWS_PROFILE
                                 sh 'terraform plan'
                             }
                         }
