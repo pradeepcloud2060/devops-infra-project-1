@@ -24,6 +24,8 @@ pipeline {
 
         stage('Terraform Init') {
                     steps {
+                        script {
+                    if (params.INIT_TERRAFORM) {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credetial-eu-central-1', region: 'eu-central-1']]){
                             dir('infra') {
                             sh 'echo "=================Terraform Init=================="'
@@ -32,6 +34,7 @@ pipeline {
                     }
                 }
         }
+    }
 
         stage('Terraform Plan') {
             steps {
