@@ -42,7 +42,6 @@ pipeline {
 
                             dir('infra') {
                                 sh 'echo "=================Terraform Plan=================="'
-                                sh unset AWS_PROFILE
                                 sh 'terraform plan'
                             }
                         }
