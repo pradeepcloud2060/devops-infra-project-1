@@ -22,19 +22,20 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
-                    steps {
-                        script {
+        tage('Terraform Init') {
+            steps {
+                script {
                     if (params.INIT_TERRAFORM) {
                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credetial-eu-central-1', region: 'eu-central-1']]){
                             dir('infra') {
-                            sh 'echo "=================Terraform Init=================="'
-                            sh 'terraform init'
+                                sh 'echo "=================Terraform Init=================="'
+                                sh 'terraform init'
+                            }
                         }
                     }
                 }
+            }
         }
-    }
 
         stage('Terraform Plan') {
             steps {
